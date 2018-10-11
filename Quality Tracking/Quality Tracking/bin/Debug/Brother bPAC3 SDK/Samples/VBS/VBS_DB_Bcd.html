@@ -1,0 +1,109 @@
+<!--
+	b-PAC 3.1 Component Sample (DB & Barcode)
+	(C)Copyright Brother Industries, Ltd. 2013
+
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="x-ua-compatible" content="IE=8">
+<TITLE>b-PAC Sample (DB & Barcode)</TITLE>
+<SCRIPT LANGUAGE="VBScript">
+<!--
+	' Data Folder
+	Const sDataFolder = "C:\Program Files\Brother bPAC3 SDK\Templates\"
+	'*******************************************************************
+	'	Changes from Name to Barcode, Prints Label
+	'*******************************************************************
+	Sub DoPrint(strExport)
+	    ' Calls Template, Print
+		Dim TheForm
+		Set TheForm = Document.ValidForm
+		strName = TheForm.ItemName.Value
+		Set ObjDoc = CreateObject("bpac.Document")
+		bRet = ObjDoc.Open(sDataFolder & "BcdItem.lbx")
+		If (bRet <> False) Then
+			strText = GetDBItemCode(strName)
+			If (strText <> "") Then
+				ObjDoc.GetObject("objName").Text = strName
+				ObjDoc.GetObject("objBarcode").Text = strText
+				If (strExport = "") Then
+			        ' ObjDoc.SetMediaByName ObjDoc.Printer.GetMediaName(), True
+				    ObjDoc.StartPrint "", 0
+				    ObjDoc.PrintOut 1, 0
+				    ObjDoc.EndPrint
+				Else
+					Set objFS = CreateObject("Scripting.FileSystemObject")
+  					Set objFolder = objFS.getSpecialFolder(2)
+  					sTempFolder = objFolder.Path & "\"
+					strExport = sTempFolder & strExport
+					ObjDoc.Export 4, strExport, 180	'Export
+					window.navigate strExport
+				End If
+			Else
+				' Error Message when does not found record
+				strText = strName & vbCrLf & "is not found."
+				MsgBox strText
+			End If
+			ObjDoc.Close
+		End If
+	    Set ObjDoc = Nothing
+	End Sub
+
+
+	'*******************************************************************
+	'	Get item's code from Access Database
+	'*******************************************************************
+	Function GetDBItemCode(strName)
+	
+		' Connects Database
+		strDB = sDataFolder & "BcdItem.mdb"
+		strCnn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" & strDB
+		strCnn12 = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & strDB
+		Set myConnection = CreateObject("ADODB.Connection")
+		On Error Resume Next
+		myConnection.Open strCnn
+		If Err.Number > 0 Then
+			myConnection.Open strCnn12
+		End If
+		On Error Goto 0	
+		
+		' Get item's code from Access Database
+		Set myRecordSet = CreateObject("ADODB.RecordSet")
+		myRecordSet.ActiveConnection = myConnection
+		myRecordSet.Open "SELECT * FROM [Fruits];"
+		strFitler = "Item = " & "'" & strName & "'"
+		myRecordSet.Filter = strFitler
+		strCode = ""
+		If (myRecordSet.EOF = False) Then
+			myRecordSet.MoveFirst
+			strCode = myRecordSet.Fields.Item("Code").Value
+	    End If
+			
+		
+		' 
+		myRecordSet.Close
+		myConnection.Close
+		Set myRecordSet = Nothing
+		Set myConnection = Nothing
+
+	    GetDBItemCode = strCode
+	End Function
+
+-->
+</SCRIPT>
+</HEAD>
+
+<BODY TEXT="white" BGCOLOR=#8080c0>
+<H2 ALIGN="center">Retrieve the barcode data corresponding to the item<P> and Print barcode label. </H2>
+<HR>
+<FORM NAME="ValidForm">
+Enter Fruit name for retrieve :
+<INPUT VALUE="Orange" NAME="ItemName" SIZE=30><P>
+<INPUT TYPE="button" VALUE="   Print   " onClick='DoPrint ""'>&nbsp; 
+<INPUT onclick='DoPrint "Preview.bmp"' type=button value=Preview>
+<HR>
+<BR>
+</FORM>
+</BODY>
+</HTML>

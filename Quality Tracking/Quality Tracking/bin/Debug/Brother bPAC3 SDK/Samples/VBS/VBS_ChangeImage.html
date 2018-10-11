@@ -1,0 +1,71 @@
+<!--
+	b-PAC 3.1 Component Sample (Character Label)
+	(C)Copyright Brother Industries, Ltd. 2013
+
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="x-ua-compatible" content="IE=8">
+<TITLE>b-PAC Sample (Character Label)</TITLE>
+<SCRIPT LANGUAGE="VBScript">
+<!--
+	' Data Folder
+	Const sDataFolder = "C:\Program Files\Brother bPAC3 SDK\Templates\"
+	'*******************************************************************
+	'	Replaces Image, Prints or Preview Label
+	'*******************************************************************
+	Sub DoPrint(strExport)
+		Dim TheForm
+		Set TheForm = Document.ValidForm
+		Set ObjDoc = CreateObject("bpac.Document")
+		nItem = TheForm.ImageList.selectedIndex
+		bRet = ObjDoc.Open(sDataFolder & "CharLabel.lbx")
+		If (bRet <> False) Then
+			strImageFile = TheForm.ImageList.options(nItem).Value
+			strImageFile = sDataFolder & strImageFile
+            
+			ObjDoc.GetObject("objImage").SetData 0, strImageFile, 0
+			ObjDoc.GetObject("objName").Text = TheForm.YourName.Value
+			
+			If (strExport = "") Then
+			    ' ObjDoc.SetMediaByName ObjDoc.Printer.GetMediaName(), True
+				ObjDoc.StartPrint "", 0
+				ObjDoc.PrintOut 1, 0
+				ObjDoc.EndPrint
+			Else
+				Set objFS = CreateObject("Scripting.FileSystemObject")
+  				Set objFolder = objFS.getSpecialFolder(2)
+  				sTempFolder= objFolder.Path & "\"
+				strExport = sTempFolder & strExport
+				ObjDoc.Export 4, strExport, 180	'Export
+				window.navigate strExport
+			End If
+			ObjDoc.Close
+		End If
+	    Set ObjDoc = Nothing
+	End Sub
+
+-->
+</SCRIPT>
+</HEAD>
+
+<BODY TEXT="white" BGCOLOR=#8080c0>
+<H2 ALIGN="center">Creating labels containing images.</H2>
+<HR>
+<FORM NAME="ValidForm">
+Select Image :
+<SELECT NAME="ImageList">
+<OPTION VALUE="Baby.BMP" selected> Baby </OPTION>
+<OPTION VALUE="Coffee.BMP"> Coffee </OPTION>
+<OPTION VALUE="Earth.BMP"> Earth </OPTION>
+</SELECT>
+<P>
+Type your name :
+<INPUT VALUE="Name" NAME="YourName" SIZE=30><P>
+<INPUT TYPE="button" VALUE="   Print   " onClick='DoPrint ""'>&nbsp; 
+<INPUT onclick='DoPrint "Preview.bmp"' type=button value=Preview>
+<HR>
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,16 @@
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\bin\Release\Quality Tracking.exe.config
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\bin\Release\Quality Tracking.exe
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\bin\Release\Quality Tracking.pdb
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\bin\Release\Quality Tracking.xml
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Interop.bpac.dll
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Interop.BrssCom.dll
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality Tracking.vbproj.ResolveComReference.cache
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality_Tracking.Form2.resources
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality_Tracking.Form4.resources
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality_Tracking.Resources.resources
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality Tracking.vbproj.GenerateResource.cache
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality Tracking.vbproj.CoreCompileInputs.cache
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality Tracking.exe
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality Tracking.xml
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality Tracking.pdb
+C:\Users\avanderpool\source\repos\Quality Tracking\Quality Tracking\obj\Release\Quality Tracking.vbprojResolveAssemblyReference.cache
