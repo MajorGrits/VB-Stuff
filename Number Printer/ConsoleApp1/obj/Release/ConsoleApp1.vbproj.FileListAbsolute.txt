@@ -1,0 +1,12 @@
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\bin\Release\Number Printer.exe.config
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\bin\Release\Number Printer.exe
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\bin\Release\Number Printer.pdb
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\bin\Release\Number Printer.xml
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\obj\Release\Interop.BrssCom.dll
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\obj\Release\ConsoleApp1.vbproj.ResolveComReference.cache
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\obj\Release\ConsoleApp1.Resources.resources
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\obj\Release\ConsoleApp1.vbproj.GenerateResource.cache
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\obj\Release\ConsoleApp1.vbproj.CoreCompileInputs.cache
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\obj\Release\Number Printer.exe
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\obj\Release\Number Printer.xml
+C:\Users\avanderpool\source\repos\Number Printer\ConsoleApp1\obj\Release\Number Printer.pdb

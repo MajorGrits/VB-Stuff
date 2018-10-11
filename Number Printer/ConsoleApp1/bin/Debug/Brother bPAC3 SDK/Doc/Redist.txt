@@ -1,0 +1,108 @@
+   ***  List of modifiable and redistributable client sample files ***
+
+-"Templates" Folder
+Address.lbx
+Asset1.lbx
+Asset2.lbx
+Badge.lbx
+BcdItem.lbx
+BcdItem.mdb
+CharLabel.lbx
+Item.lbx
+NamePlate1.lbx
+NamePlate2.lbx
+NamePlate100.lbx
+NamePlate.lbx
+QL-Address.lbx
+QL-Nameplt.lbx
+QL-Shipping2.lbx
+QL-visitor.lbx
+ShipForm.lbx
+Shop.lbx
+User.lbx
+
+
+-"Samples\VBA" Folder
+Address.xls
+Asset1.xls
+Asset2.xls
+ItemLabel.xls
+NamePlt.mdb
+ShopLbl.mdb
+
+
+-"Samples\VBNET\Badge" Folder
+Badge.sln
+Badge.vbproj
+Form1.Designer.vb
+Form1.resx
+Form1.vb
+.\MyProject\Application.Designer.vb
+.\MyProject\AssemblyInfo.vb
+.\MyProject\Resources.Designer.vb
+.\MyProject\Resources.resx
+.\MyProject\Settings.Designer.vb
+.\MyProject\Settings.settings
+.\bin\Release\Badge.exe
+.\bin\Release\Interop.bpac.dll
+
+
+
+-"Samples\VBNET\NamePlt" Folder
+AssemblyInfo.vb
+NamePlt.sln
+Form1.resx
+Form1.vb
+NamePlt.vbproj
+.\bin\Interop.bpac.dll
+.\bin\NamePlt.exe
+
+
+-"Samples\JScript" Folder
+JS_NamePlate.html
+
+
+-"Samples\VBS" Folder
+NamePrn.vbs
+VBS_ChangeImage.html
+VBS_DB_Bcd.html
+VBS_NamePlate.html
+
+
+-"Samples\VC\Console" Folder
+BcdLabel.vbs
+ConsoleLabel.c
+ConsoleLabel.sln
+ConsoleLabel.vcproj
+.\Release\BcdLabel.vbs
+.\Release\ConcoleLabel.exe
+.\x64\Release\BcdLabel.vbs
+.\x64\Release\ConcoleLabel.exe
+
+-"Samples\VC\Nameplt" Folder
+Resource.h
+StdAfx.cpp
+StdAfx.h
+NamePlt.cpp
+NamePlt.sln
+NamePlt.vcproj
+NamePlt.h
+NamePlt.rc
+NamePltDlg.cpp
+NamePltDlg.h
+.\res\NamePlt.ico
+.\res\NamePlt.rc2
+.\Release\NamePlt.exe
+.\x64\Release\NamePlt.exe
+
+
+-"Samples\VCS\NamePlt" Folder
+NamePlt.sln
+NamePlt.csproj
+Form1.cs
+Form1.Designer.cs
+Form1.resx
+Program.cs
+.\Properties\AssemblyInfo.cs
+.\bin\Release\Interop.bpac.dll
+.\bin\Release\NamePlt.exe

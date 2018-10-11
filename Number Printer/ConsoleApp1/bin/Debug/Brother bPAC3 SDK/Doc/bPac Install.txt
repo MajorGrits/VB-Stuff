@@ -1,0 +1,35 @@
+*** Please read ***
+
+Installed files
+  When Brother b-PAC3 SDK is installed, files are copied to the following folders.
+
+    Application folder (normally C:\Program Files\Brother bPAC3 SDK\)
+
+    \Doc	Brother b-PAC3 SDK document, the user license agreement,
+                and a list of redistributable samples
+    \Redist	Merge Module for redistribution (bPAC3.msm/bPAC3_64.msm)
+    \Samples	VBA, VB.NET, VBS, VC, VC# and JScript sample projects
+    \Templates	Template files for use with the sample projects
+
+  Common files folder (normally C:\Program Files\Common Files\Brother\b-PAC) 
+
+    Component
+
+
+Start menu
+  [Brother b-PAC3 SDK]
+    b-PAC 3.2 Help	A shortcut to the "b-PAC 3.2 Help"
+    Samples		A shortcut to the sample project folder
+
+Sample projects
+  Sample projects are included in "Brother b-PAC3 SDK"; however, the sample projects
+assume that the templates are located in the folder
+C:\Program Files\Brother bPAC3 SDK\Templates.
+
+  If Brother b-PAC3 SDK is installed into a folder other than
+C:\Program Files\Brother bPAC3 SDK\, copy all files in the installed Templates folder to
+C:\Program Files\Brother bPAC3 SDK\Templates (creating the folder if necessary).
+
+  In order to use the various sample projects, the necessary development environment and
+execution environment must be installed separately. For more details, refer to the
+"b-PAC 3.2 Help".

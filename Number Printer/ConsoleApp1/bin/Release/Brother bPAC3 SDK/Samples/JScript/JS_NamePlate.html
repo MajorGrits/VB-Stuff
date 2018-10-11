@@ -1,0 +1,86 @@
+<!--
+'*************************************************************************
+'
+'		b-PAC 3.1 Component Sample (JS_NamePlate.html)
+'
+'		(C)Copyright Brother Industries, Ltd. 2013
+'
+'*************************************************************************/
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>b-PAC 3.0 Javascript Sample</title>
+    <script language="javascript" type="text/javascript">
+    <!--
+    var DATA_FOLDER = "C:\\Program Files\\Brother bPAC3 SDK\\Templates\\";
+    //------------------------------------------------------------------------------
+    //   Function name   :   DoPrint
+    //   Description     :   Print, Preview Module
+    //------------------------------------------------------------------------------
+    function DoPrint(strExport)
+    {
+        var theForm = document.getElementById("myForm");
+        var nItem = theForm.cmbTemplate.selectedIndex;
+        var strPath = DATA_FOLDER + theForm.cmbTemplate.options[nItem].value;
+     
+		var objDoc = new ActiveXObject("bpac.Document");
+		if(objDoc.Open(strPath) != false)
+		{
+			objDoc.GetObject("objCompany").Text = theForm.txtCompany.value;
+			objDoc.GetObject("objName").Text = theForm.txtName.value;
+			theForm.txtWidth.value = objDoc.Width;
+			
+			if(strExport == "")
+			{
+				//objDoc.SetMediaByName(objDoc.Printer.GetMediaName(), true);
+				objDoc.StartPrint("", 0);
+				objDoc.PrintOut(1, 0);
+				objDoc.Close();
+				objDoc.EndPrint();
+			}
+			else
+			{
+				var fso = new ActiveXObject("Scripting.FileSystemObject");
+				var TEMP_FOLDER = fso.GetSpecialFolder(2);
+				strExport = TEMP_FOLDER + strExport;
+				objDoc.Export(4, strExport, 180);
+				objDoc.Close();
+				window.location.href = strExport;
+			}
+		}
+    }   
+    -->
+    </script>
+</head>
+<body style="color:White;background-color:#8080c0">
+<form id = "myForm" action = "">
+	<h2 style="text-align:center">Simple Name Badge Example</h2>
+	<hr />
+    <p>
+	Template :
+    <select name="cmbTemplate" id="cmbTemplate" style="width: 320px; height: 22px">
+    <option value="NamePlate1.lbx" selected="selected">NamePlate Design 1</option>
+    <option value="NamePlate2.lbx">NamePlate Design 2</option>
+    </select>
+    </p>
+
+	<p>
+	Name :
+    <input id="txtName" type="text" style="width: 320px" value="John Smith"/>
+    </p>
+
+	<p>
+	Company :
+    <input id="txtCompany" type="text" style="width: 320px" value="LBI Corp." />
+    </p>
+
+    <input id="btnPrint" type="button" value="   Print   " onclick="DoPrint('')"/>
+	<input id="btnPreview" type="button" value="   Preview   " onclick="DoPrint('Preview.bmp')"/>
+    <hr />
+	<br />
+	Tape Width :
+	<input id="txtWidth" style="size:15;"/>
+    </form>
+</body>
+</html>

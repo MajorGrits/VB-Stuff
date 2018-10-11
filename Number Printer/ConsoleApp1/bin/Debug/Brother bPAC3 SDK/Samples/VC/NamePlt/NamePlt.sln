@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NamePlt", "NamePlt.vcproj", "{DB4EC51C-516A-4792-8623-B393816AA76E}"
+EndProject
+Global
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB4EC51C-516A-4792-8623-B393816AA76E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DB4EC51C-516A-4792-8623-B393816AA76E}.Debug|Win32.Build.0 = Debug|Win32
+		{DB4EC51C-516A-4792-8623-B393816AA76E}.Debug|x64.ActiveCfg = Debug|x64
+		{DB4EC51C-516A-4792-8623-B393816AA76E}.Debug|x64.Build.0 = Debug|x64
+		{DB4EC51C-516A-4792-8623-B393816AA76E}.Release|Win32.ActiveCfg = Release|Win32
+		{DB4EC51C-516A-4792-8623-B393816AA76E}.Release|Win32.Build.0 = Release|Win32
+		{DB4EC51C-516A-4792-8623-B393816AA76E}.Release|x64.ActiveCfg = Release|x64
+		{DB4EC51C-516A-4792-8623-B393816AA76E}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

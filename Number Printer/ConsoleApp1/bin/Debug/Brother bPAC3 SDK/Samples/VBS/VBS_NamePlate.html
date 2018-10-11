@@ -1,0 +1,74 @@
+<!--
+	b-PAC 3.1 Component Sample (Nameplates Label)
+	(C)Copyright Brother Industries, Ltd. 2013
+
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<meta http-equiv="x-ua-compatible" content="IE=8">
+<TITLE>b-PAC Sample (Nameplates)</TITLE>
+<SCRIPT LANGUAGE="VBScript">
+<!--
+	' Data Folder
+	Const sDataFolder = "C:\Program Files\Brother bPAC3 SDK\Templates\"
+	'*******************************************************************
+	'	Print, Preview Module
+	'*******************************************************************
+	Sub DoPrint(strExport)
+		Dim TheForm
+		Set TheForm = Document.ValidForm
+		Set ObjDoc = CreateObject("bpac.Document")
+		nItem = TheForm.TemplateList.selectedIndex
+		strFilePath = TheForm.TemplateList.options(nItem).Value
+		strFilePath = sDataFolder & strFilePath
+		If (ObjDoc.Open(strFilePath) <> False) Then
+			ObjDoc.GetObject("objCompany").Text = TheForm.Department.Value
+			ObjDoc.GetObject("objName").Text = TheForm.Name.Value
+			TheForm.SheetSize.Value = ObjDoc.Width
+			If (strExport = "") Then
+			    ' ObjDoc.SetMediaByName ObjDoc.Printer.GetMediaName(), True
+				ObjDoc.StartPrint "", 0
+				ObjDoc.PrintOut 1, 0
+				ObjDoc.EndPrint
+			Else
+				Set objFS = CreateObject("Scripting.FileSystemObject")
+  				Set objFolder = objFS.getSpecialFolder(2)
+  				sTempFolder= objFolder.Path & "\"
+				strExport = sTempFolder & strExport
+				ObjDoc.Export 4, strExport, 180
+				window.navigate strExport
+			End If
+			ObjDoc.Close
+		End If
+	    Set ObjDoc = Nothing
+	End Sub
+
+-->
+</SCRIPT>
+</HEAD>
+
+<BODY TEXT="white" BGCOLOR=#8080c0>
+<H2 ALIGN="center">Simple Name Badge Example</H2>
+<HR>
+<FORM NAME="ValidForm">
+Template :
+<SELECT NAME="TemplateList">
+<OPTION VALUE="NamePlate1.LBX" selected >NamePlate Design 1</OPTION>
+<OPTION VALUE="NamePlate2.LBX">NamePlate Design 2</OPTION>
+</SELECT>
+<P>
+Name :
+<INPUT VALUE="John Smith" NAME="Name" SIZE=30><P>
+Company :
+<INPUT VALUE="LBI Corp." NAME ="Department" SIZE=30><P>
+<INPUT TYPE="button" VALUE="   Print   " onClick='DoPrint ""'>&nbsp; 
+<INPUT onclick='DoPrint "Preview.bmp"' type=button value=Preview>
+<HR>
+<BR>
+Tape Width :
+<INPUT NAME="SheetSize" SIZE=15 >
+<BR>
+</FORM>
+</BODY>
+</HTML>
