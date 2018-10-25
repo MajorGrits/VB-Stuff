@@ -4,6 +4,7 @@ Public Class Form1
 
     'Path to resource files and grab latest backup files
     Dim resourcePath As String = My.Settings.resources
+
     'Create dt for tracking information
     Dim reportDT As New DataTable
     Dim tempReportDT As New DataTable
@@ -15,18 +16,18 @@ Public Class Form1
     Dim totDef As Integer = 0
     Dim categoryCount As Integer = defectVariables.Count
     Dim defectCount As Integer = 0
-    Dim dateOne As String
-    Dim dateTwo As String
+    Dim dateOne As String = ""
+    Dim dateTwo As String = ""
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         'Load latest files from resources
-        checkOrLoad()
+        CheckOrLoad()
 
     End Sub
 
-    Public Sub checkOrLoad()
+    Public Sub CheckOrLoad()
 
         resourcePathTB.Text = My.Settings.resources
         ComboBox1.Items.Add("")
@@ -36,10 +37,11 @@ Public Class Form1
             Dim mostRecent As String = "0"
             Dim splitBUD() As String
             Dim mr() As String
-            Dim mrTime As Integer
-            Dim tempTime As Integer
-            Dim tempdate As String
-            Dim mrdate As String
+            Dim mrTime As Integer = -1
+            Dim tempTime As Integer = -1
+            Dim tempdate As String = ""
+            Dim mrdate As String = ""
+
             'Select most recent
             For Each backupdir In backUpDirs
                 splitBUD = backupdir.Split("\")
@@ -51,21 +53,20 @@ Public Class Form1
                     mostRecent = backupdir
                     mrdate = tempdate
                     mrTime = tempTime
-                ElseIf tempdate = mrdate Then
-                    If tempTime > mrTime Then
-                        mostRecent = backupdir
-                        mrdate = tempdate
-                        mrTime = tempTime
-                    End If
+                ElseIf tempdate = mrdate & tempTime > mrTime Then
+                    mostRecent = backupdir
+                    mrdate = tempdate
+                    mrTime = tempTime
                 ElseIf tempdate > mrdate Then
                     mostRecent = backupdir
                     mrdate = tempdate
                     mrTime = tempTime
                 End If
             Next
+
             'Select files
-            Dim mrFiles = Directory.GetFiles(mostRecent)
-            For Each mrFile In mrFiles
+            For Each mrFile In Directory.GetFiles(mostRecent)
+
                 'Fill Tent Types
                 If mrFile.Contains("prepackKey.txt") Then
                     Dim lines() = File.ReadAllLines(mrFile)
@@ -76,14 +77,14 @@ Public Class Form1
                             tentType.Items.Add(tempLines(3))
                         End If
                     Next
+
                     'Fill reportDT
                 ElseIf mrFile.Contains("prepackTracking.txt") Then
-                    createDT(reportDT)
-                    createDT(tempReportDT)
+                    CreateDT(reportDT)
+                    CreateDT(tempReportDT)
                     Dim cols As Integer = reportDT.Columns.Count
                     Dim i As Integer = 0
-                    Dim lines = File.ReadAllLines(mrFile)
-                    For Each line In lines
+                    For Each line In File.ReadAllLines(mrFile)
                         Dim R As DataRow = reportDT.NewRow
                         Dim tempLines() As String
                         tempLines = line.Split(",")
@@ -99,13 +100,11 @@ Public Class Form1
                         End If
                     Next
                 ElseIf mrFile.Contains("category.txt") Then
-                    categories = File.ReadAllLines(mrFile)
-                    For Each category As String In categories
+                    For Each category As String In File.ReadAllLines(mrFile)
                         defectVariables(category) = 0
                     Next
                 ElseIf mrFile.Contains("contracts.txt") Then
-                    Dim contracts As String() = File.ReadAllLines(mrFile)
-                    For Each contract In contracts
+                    For Each contract In File.ReadAllLines(mrFile)
                         ComboBox1.Items.Add(contract)
                     Next
                 End If
@@ -126,17 +125,17 @@ Public Class Form1
 
     End Sub
 
-    Public Function createDT(dt As DataTable)
+    Public Sub CreateDT(dt As DataTable)
         dt.Columns.Clear()
         dt.Rows.Clear()
         Dim dtColumns() As String = {"ID", "Auditor(s)", "Date Completed", "Line Item", "Tent Type", "Contract", "Hold", "Repaired", "Reinspected", "Recut", "Released", "(1)Defect", "(1)Category", "(1)Repaired By", "(1)Repaired Date", "(2)Defect", "(2)Category", "(2)Repaired By", "(2)Repaired Date", "(3)Defect", "(3)Category", "(3)Repaired By", "(3)Repaired Date", "(4)Defect", "(4)Category", "(4)Repaired By", "(4)Repaired Date", "(5)Defect", "(5)Category", "(5)Repaired By", "(5)Repaired Date", "QTY", "Deleted"}
         For Each col In dtColumns
             dt.Columns.Add(col)
         Next
-    End Function
+    End Sub
 
 
-    Private Sub resourcePathLockCB_Click(sender As Object, e As EventArgs) Handles resourcePathLockCB.Click
+    Private Sub ResourcePathLockCB_Click(sender As Object, e As EventArgs) Handles resourcePathLockCB.Click
 
         'Lock resource path
         If resourcePathLockCB.Checked = False Then
@@ -153,7 +152,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub saveBut_Click(sender As Object, e As EventArgs) Handles saveBut.Click
+    Private Sub SaveBut_Click(sender As Object, e As EventArgs) Handles saveBut.Click
 
         'Saves resource path to settings and update resourcePath
         My.Settings.resources = resourcePathTB.Text
@@ -163,11 +162,12 @@ Public Class Form1
         resourcePathTB.ReadOnly = True
         saveBut.Enabled = False
         resourcePath = My.Settings.resources
-        checkOrLoad()
+        CheckOrLoad()
 
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
         'grab enteries within date range
         tempReportDT.Clear()
         dateOne = DateTimePicker1.Value.ToString("MM/dd/yyyy")
@@ -210,20 +210,14 @@ Public Class Form1
 
         DataGridView1.DataSource = tempReportDT
 
-
         'Calculate 
-
-        calDPMOandPercentage()
-        countDefectTypes()
-
-
-        writeReport()
-
+        CalDPMOandPercentage()
+        CountDefectTypes()
+        WriteReport()
 
     End Sub
 
-
-    Public Sub calDPMOandPercentage()
+    Public Sub CalDPMOandPercentage()
 
         If tempReportDT.Rows.Count = 0 Then
             MsgBox("No data")
@@ -237,14 +231,14 @@ Public Class Form1
             End If
         Next
 
+        'Abe, buddy. No magic numbers.
         percentage = (totDef / totCount) * 100
         percentage = Math.Round(percentage)
         DPMO = (totDef / totCount) * 1000000
 
     End Sub
 
-    Public Sub countDefectTypes()
-
+    Public Sub CountDefectTypes()
         Dim i As Integer = tempReportDT.Columns.Count
         categoryCount = defectVariables.Count
         For Each row As DataRow In tempReportDT.Rows
@@ -259,14 +253,7 @@ Public Class Form1
         Next
     End Sub
 
-    Public Sub getKey()
-
-
-
-
-    End Sub
-
-    Public Sub writeReport()
+    Public Sub WriteReport()
 
         File.Create(My.Application.Info.DirectoryPath & "\" & tentType.Text & " Defect Report.txt").Close()
 
@@ -378,11 +365,8 @@ Public Class Form1
         totDef = 0
         defectCount = 0
 
-
-
         Process.Start(My.Application.Info.DirectoryPath & "\" & tentType.Text & " Defect Report.txt")
 
     End Sub
-
 
 End Class
