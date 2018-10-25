@@ -1,0 +1,12 @@
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\bin\Release\Quality Report.exe.config
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\bin\Release\Quality Report.exe
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\bin\Release\Quality Report.pdb
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\bin\Release\Quality Report.xml
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\obj\Release\Quality_Report.Form1.resources
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\obj\Release\Quality_Report.Resources.resources
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\obj\Release\Quality Report.vbproj.GenerateResource.cache
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\obj\Release\Quality Report.vbproj.CoreCompileInputs.cache
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\obj\Release\Quality Report.exe
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\obj\Release\Quality Report.xml
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\obj\Release\Quality Report.pdb
+C:\Users\avanderpool\source\repos\Quality Report\Quality Report\obj\Release\Quality Report.vbprojResolveAssemblyReference.cache
